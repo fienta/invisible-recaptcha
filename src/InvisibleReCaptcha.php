@@ -144,13 +144,13 @@ class InvisibleReCaptcha
         $lang = Arr::get($arguments, 0);
         $nonce = Arr::get($arguments, 1);
 
-        $html = '<script src="' . $this->getCaptchaJs($lang) . '" async defer';
+        $html = '<script data-cookieconsent="ignore" src="' . $this->getCaptchaJs($lang) . '" async defer';
         if (isset($nonce) && ! empty($nonce)) {
             $html .= ' nonce="' . $nonce . '"';
         }
         $html .= '></script>' . PHP_EOL;
-        $html .= '<script>var _submitForm,_captchaForm,_captchaSubmit,_execute=true,_captchaBadge;</script>';
-        $html .= "<script>window.addEventListener('load', _loadCaptcha);" . PHP_EOL;
+        $html .= '<script data-cookieconsent="ignore">var _submitForm,_captchaForm,_captchaSubmit,_execute=true,_captchaBadge;</script>';
+        $html .= '<script data-cookieconsent="ignore">window.addEventListener("load", _loadCaptcha);' . PHP_EOL;
         $html .= "function _loadCaptcha(){";
         if ($this->getOption('hideBadge', false)) {
             $html .= "_captchaBadge=document.querySelector('.grecaptcha-badge');";
